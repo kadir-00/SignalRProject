@@ -1,0 +1,51 @@
+﻿@model UpdateContactDto
+@{
+    ViewData["Title"] = "UpdateContact";
+    Layout = "~/Views/AdminLayout/Index.cshtml";
+}
+
+<div class="content">
+	<div class="container-fluid">
+		<h4 class="page-title">Alt Iletisim Bilgi Islemleri</h4>
+		<div class="row">
+			<div class="col-md-12">
+				<form method="post">
+					<div class="card">
+						<div class="card-header">
+							<div class="card-title">Yeni Alt Iletisim Bilgi Guncelleme </div>
+						</div>
+						<input type="hidden" asp-for="ContactId" />
+						<div class="card-body">
+							<div class="form-group">
+								<label for="Location">Konum Giriniz</label>
+								<input type="text" class="form-control" asp-for="Location" id="Location" placeholder="Lokasyon">
+							</div>
+						</div>
+						<div class="card-body">
+							<div class="form-group">
+								<label for="Phone">Telefon No Giriniz</label>
+								<input type="text" class="form-control" asp-for="Phone" id="Phone" placeholder="Telefon">
+							</div>
+						</div>
+						<div class="card-body">
+							<div class="form-group">
+								<label for="Mail">Mail Giriniz</label>
+								<input type="email" class="form-control" asp-for="Mail" id="Mail" placeholder="Mail">
+							</div>
+						</div>
+						<div class="card-body">
+							<div class="form-group">
+								<label for="FooterDescription">Aciklama Giriniz</label>
+								<input type="text" class="form-control" asp-for="FooterDescription" id="FooterDescription" placeholder="Aciklama">
+							</div>
+						</div>
+						<div class="card-action">
+							<button class="btn btn-success-primary">Iletisim Bilgisini Ekle</button>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+
