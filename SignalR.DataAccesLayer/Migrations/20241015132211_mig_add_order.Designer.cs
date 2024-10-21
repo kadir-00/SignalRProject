@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SignalR.DataAccesLayer.Concrete;
 
@@ -11,9 +12,10 @@ using SignalR.DataAccesLayer.Concrete;
 namespace SignalR.DataAccesLayer.Migrations
 {
     [DbContext(typeof(SignalRContext))]
-    partial class SignalRContextModelSnapshot : ModelSnapshot
+    [Migration("20241015132211_mig_add_order")]
+    partial class mig_add_order
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -193,42 +195,6 @@ namespace SignalR.DataAccesLayer.Migrations
                     b.ToTable("Features");
                 });
 
-            modelBuilder.Entity("SignalR.EntityLayer.Entities.MenuTable", b =>
-                {
-                    b.Property<int>("MenuTableId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("MenuTableId"), 1L, 1);
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("Status")
-                        .HasColumnType("bit");
-
-                    b.HasKey("MenuTableId");
-
-                    b.ToTable("MenuTables");
-                });
-
-            modelBuilder.Entity("SignalR.EntityLayer.Entities.MoneyCase", b =>
-                {
-                    b.Property<int>("MoneyCaseId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("MoneyCaseId"), 1L, 1);
-
-                    b.Property<decimal>("TotalAmount")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.HasKey("MoneyCaseId");
-
-                    b.ToTable("moneyCases");
-                });
-
             modelBuilder.Entity("SignalR.EntityLayer.Entities.Order", b =>
                 {
                     b.Property<int>("OrderId")
@@ -237,12 +203,12 @@ namespace SignalR.DataAccesLayer.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("OrderId"), 1L, 1);
 
+                    b.Property<DateTime>("Date")
+                        .HasColumnType("datetime2");
+
                     b.Property<string>("Description")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("OrderDate")
-                        .HasColumnType("Date");
 
                     b.Property<string>("TableNumber")
                         .IsRequired()
