@@ -1,0 +1,30 @@
+﻿
+@{
+    Layout = null;
+}
+@* UI LAYOUT SAYFASI *@
+<!DOCTYPE html>
+<html>
+@await Component.InvokeAsync("_UILayoutHeadComponentPartial")
+
+<body>
+
+    @await Component.InvokeAsync("_UILayoutNavbarComponentPartial")
+    
+
+    <!-- book section -->
+    @* <div class="main-panel"> *@
+        @RenderBody()
+    
+    
+    <!-- end book section -->
+    <!-- footer section -->
+    @await Component.InvokeAsync("_UILayoutFooterComponentPartial")
+    
+    
+    <!-- footer section -->
+    @await Component.InvokeAsync("_UILayoutScriptsComponentPartial")
+
+</body>
+
+</html>
