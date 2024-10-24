@@ -1,4 +1,6 @@
-﻿
+﻿@model List<ResultAboutDto>
+@foreach(var item in Model)
+{
 <section class="about_section layout_padding">
     <div class="container  ">
 
@@ -12,20 +14,22 @@
                 <div class="detail-box">
                     <div class="heading_container">
                         <h2>
-                            We Are Feane
+                            @item.Title
                         </h2>
                     </div>
                     <p>
-                        There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration
+                        @item.Description
+                        @* There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration
                         in some form, by injected humour, or randomised words which don't look even slightly believable. If you
                         are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in
-                        the middle of text. All
+                        the middle of text. All *@
                     </p>
-                    <a href="">
-                        Read More
+                    <a href="/About/Index/">
+                        Daha Fazlasini Gor...
                     </a>
                 </div>
             </div>
         </div>
     </div>
 </section>
+}

@@ -1,9 +1,9 @@
-﻿
+﻿@model List<ResultProductDto>
 <section class="food_section layout_padding-bottom">
     <div class="container">
         <div class="heading_container heading_center">
             <h2>
-                Our Menu
+                One Cikan Urunlerimiz
             </h2>
         </div>
 
@@ -17,22 +17,27 @@
 
         <div class="filters-content">
             <div class="row grid">
+                @foreach (var item in Model)
+                {
+                    
                 <div class="col-sm-6 col-lg-4 all pizza">
                     <div class="box">
                         <div>
                             <div class="img-box">
-                                <img src="~/Tema/feane-1.0.0/images/f1.png" alt="">
+                                <img src="@item.ImageUrl" alt="">
                             </div>
                             <div class="detail-box">
                                 <h5>
-                                    Delicious Pizza
+                                    @item.ProductName
+                                   @*  Delicious Pizza *@
                                 </h5>
                                 <p>
-                                    Veniam debitis quaerat officiis quasi cupiditate quo, quisquam velit, magnam voluptatem repellendus sed eaque
+                                    @item.Description
+                                    @* Veniam debitis quaerat officiis quasi cupiditate quo, quisquam velit, magnam voluptatem repellendus sed eaque *@
                                 </p>
                                 <div class="options">
                                     <h6>
-                                        $20
+                                        @item.Price$
                                     </h6>
                                     <a href="">
                                         <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 456.029 456.029" style="enable-background:new 0 0 456.029 456.029;" xml:space="preserve">
@@ -93,7 +98,8 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-sm-6 col-lg-4 all burger">
+                }
+                @* <div class="col-sm-6 col-lg-4 all burger">
                     <div class="box">
                         <div>
                             <div class="img-box">
@@ -700,11 +706,11 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> *@
             </div>
         </div>
         <div class="btn-box">
-            <a href="">
+            <a href="/Menu/Index/">
                Daha Fazlasini Gor
             </a>
         </div>

@@ -35,7 +35,7 @@ namespace SignalR.BussinesLayer.Concrete
 
         public List<Slider> TGetListAll()
         {
-            throw new NotImplementedException();
+            return _sliderDal.GetListAll(); 
         }
 
         public void TUpdate(Slider entity)
