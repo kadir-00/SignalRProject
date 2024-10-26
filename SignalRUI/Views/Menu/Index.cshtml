@@ -59,7 +59,7 @@
                                         <h6>
                                             @item.Price TL
                                         </h6>
-                                        <a href="#" onclick="showproductid(@item.ProductID)" >
+                                        <a href="#" onclick="showproductid(@item.ProductID)" id="@item.ProductID" >
                                             <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 456.029 456.029" style="enable-background:new 0 0 456.029 456.029;" xml:space="preserve">
                                             <g>
                                             <g>
@@ -142,12 +142,12 @@
         function showproductid(value) {
             var id = value;
             $.ajax({
-                type: 'post',
+                type: 'POST',
                 data: { item: id },
                 url: "/Menu/AddBasket/" + id,
                 contentType: 'json',
                 success: function () {
-                    alert("Tikladiginiz Urun Id Degeri: " + id,"Sectiginiz Urun Sepete Eklendi");
+                    alert("Sectiginiz Urun Sepete Eklendi", "Tikladiginiz Urun Id Degeri: " + id,);
                     // swal('Good job!' + id, 'You clicked the button!', 'success');
                 }
             });

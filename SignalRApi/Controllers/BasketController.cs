@@ -33,7 +33,7 @@ namespace SignalRApi.Controllers
             var value = context.Baskets.Include(x => x.Product).Where(y => y.MenuTableId == id).Select(z => new ResultBasketListWithProducts
 			{
                 BasketId=z.BasketId,
-                Count=z.Count,
+                Count=z.Count, 
                 MenuTableId=z.MenuTableId,
                 Price=z.Price,
                 ProductID=z.ProductID,
@@ -50,11 +50,10 @@ namespace SignalRApi.Controllers
             {
 				ProductID = createBasketDto.ProductID,
 				Count = 1,
-            MenuTableId=4,
-            Price=context.Products.Where(x=>x.ProductID==createBasketDto.ProductID).Select(y=>y.Price).FirstOrDefault(),
+                MenuTableId = 3,  /* bak*/
+                Price =context.Products.Where(x=>x.ProductID==createBasketDto.ProductID).Select(y=>y.Price).FirstOrDefault(),
             TotalPrice=0,
-            
-            });
+            }); 
             return Ok();
         }
         [HttpDelete("{id}")]
