@@ -83,14 +83,14 @@ namespace SignalRApi.Controllers
 			return Ok("Guncelleme Islemi Basariyla Yapildi");
 		}
 
-		[HttpGet("NotificationStatusChangeToFalse")]
+		[HttpGet("NotificationStatusChangeToFalse/{id}")]
 		public IActionResult NotificationStatusChangeToFalse(int id)
 		{
 			_notificationService.TNotificationStatusChangeToFalse(id);
 			return Ok("Guncelleme Yapildi");
 		}
 
-		[HttpGet("NotificationStatusChangeToTrue")]
+		[HttpGet("NotificationStatusChangeToTrue/{id}")]
 		public IActionResult NotificationStatusChangeToTrue(int id)
 		{
 			_notificationService.TNotificationStatusChangeToTrue(id);
