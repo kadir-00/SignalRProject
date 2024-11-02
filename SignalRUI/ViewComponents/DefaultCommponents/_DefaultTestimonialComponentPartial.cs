@@ -25,7 +25,7 @@ namespace SignalRUI.ViewComponents.DefaultCommponents
             var values = JsonConvert.DeserializeObject<List<ResultTestimonialDto>>(jsonData);
             return View(values);
 
-            return View();
+            
         }
     }
 }
