@@ -9,5 +9,7 @@ namespace SignalR.BussinesLayer.Abstract
 {
     public interface IDiscountService:IGenericService<Discount>
     {
-    }
+		void TChangeStatusToTrue(int id);
+		void TChangeStatusToFalse(int id);
+	}
 }

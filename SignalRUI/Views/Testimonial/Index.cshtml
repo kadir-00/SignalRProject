@@ -32,8 +32,9 @@
 							<tbody>
 								@foreach (var item in Model)
 								{
+									count++;
 									<tr>
-										<td> @item.TestimonialId </td>
+										<th> @count </th>
 										<td>@item.Name</td>
 										<td>@item.Status</td>
 

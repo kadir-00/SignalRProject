@@ -15,6 +15,7 @@ namespace SignalRUI.Controllers
 
 		public async Task<IActionResult> Index()
 		{
+			
 			var client = _httpClientFactory.CreateClient();
 			var responseMessage = await client.GetAsync("https://localhost:7190/api/Booking");
 			if (responseMessage.IsSuccessStatusCode) // eger responseMessage 200 donerse 
@@ -38,6 +39,7 @@ namespace SignalRUI.Controllers
 		[HttpPost]
 		public async Task<IActionResult> CreateBooking(CreateBookingDto createBookingDto)
 		{
+			createBookingDto.Description = "Rezervasyon Alindi";
 			//createBookingDto.Status = true;
 			var client = _httpClientFactory.CreateClient();
 			var jsonData = JsonConvert.SerializeObject(createBookingDto);
@@ -89,6 +91,22 @@ namespace SignalRUI.Controllers
 			}
 			return View();
 
+		}
+
+		public async Task<IActionResult> BookingStatusApproved(int id)
+		{
+			var client = _httpClientFactory.CreateClient();
+			var responseMessage = await client.GetAsync($"https://localhost:7190/api/Booking/BookingStatusApproved/{id}");
+
+			return RedirectToAction("Index");
+		}
+
+		public async Task<IActionResult> BookingStatusCancelled(int id)
+		{
+			var client = _httpClientFactory.CreateClient();
+			var responseMessage = await client.GetAsync($"https://localhost:7190/api/Booking/BookingStatusCancelled/{id}");
+
+			return RedirectToAction("Index");
 		}
 	}
 }
