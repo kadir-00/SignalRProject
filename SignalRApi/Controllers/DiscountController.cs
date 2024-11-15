@@ -31,15 +31,17 @@ namespace SignalRApi.Controllers
         [HttpPost]
         public IActionResult CreateDiscount(CreateDiscountDto createDiscountDto)
         {
-            _discountService.TAdd(new Discount()
-            {
-                Amount = createDiscountDto.Amount,
-                Deescription = createDiscountDto.Deescription,
-                ImageUrl = createDiscountDto.ImageUrl,
-                Title = createDiscountDto.Title,
-                Status = false
+            var value = _mapper.Map<Discount>(createDiscountDto);
+            //_discountService.TAdd(new Discount()
+            //{
+            //    Amount = createDiscountDto.Amount,
+            //    Deescription = createDiscountDto.Deescription,
+            //    ImageUrl = createDiscountDto.ImageUrl,
+            //    Title = createDiscountDto.Title,
+            //    Status = false
 
-            });
+            //});
+            _discountService.TAdd(value);
             return Ok("Indirim Eklendi");
         }
 
@@ -61,15 +63,17 @@ namespace SignalRApi.Controllers
         [HttpPut]
         public IActionResult UpdateDiscount(UpdateDiscountDto updateDiscountDto)
         {
-            _discountService.TUpdate(new Discount()
-            {
-                DiscountId = updateDiscountDto.DiscountId,
-                Amount = updateDiscountDto.Amount,
-                Title = updateDiscountDto.Title,
-                ImageUrl= updateDiscountDto.ImageUrl,
-                Deescription = updateDiscountDto.Deescription,
-                Status=false
-            });
+            var value = _mapper.Map<Discount>(updateDiscountDto);
+            //_discountService.TUpdate(new Discount()
+            //{
+            //    DiscountId = updateDiscountDto.DiscountId,
+            //    Amount = updateDiscountDto.Amount,
+            //    Title = updateDiscountDto.Title,
+            //    ImageUrl= updateDiscountDto.ImageUrl,
+            //    Deescription = updateDiscountDto.Deescription,
+            //    Status=false
+            //});
+            _discountService.TUpdate(value);
             return Ok("Indirim Bilgisi Guncellendi");
         }
 
@@ -87,5 +91,12 @@ namespace SignalRApi.Controllers
 			return Ok("Urun Indirimi Pasif Hale Getirildi");
 		}
 
+		[HttpGet("GetListByStatusTrue")]
+		public IActionResult GetListByStatusTrue()
+		{
+			return Ok(_discountService.TGetListByStatusTrue());
+		}
+
 	}
+	
 }

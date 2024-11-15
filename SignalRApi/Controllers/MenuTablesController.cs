@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using SignalR.BussinesLayer.Abstract;
 using SignalR.DtoLayer.MenuTableDto;
@@ -11,13 +12,15 @@ namespace SignalRApi.Controllers
 	public class MenuTablesController : ControllerBase
 	{
 		private readonly IMenuTableService _menuTableService;
+		private readonly IMapper _mapper;
 
-		public MenuTablesController(IMenuTableService menuTableService)
-		{
-			_menuTableService = menuTableService;
-		}
+        public MenuTablesController(IMenuTableService menuTableService, IMapper mapper)
+        {
+            _menuTableService = menuTableService;
+            _mapper = mapper;
+        }
 
-		[HttpGet("MenuTableCount")]
+        [HttpGet("MenuTableCount")]
 		public IActionResult MenuTableCount()
 		{
 			return Ok(_menuTableService.TMenuTableCount());
@@ -28,20 +31,20 @@ namespace SignalRApi.Controllers
 		public IActionResult MenuTablesList()
 		{
 			var values = _menuTableService.TGetListAll();
-			return Ok(values);
+			return Ok(_mapper.Map<List<ResultMenuTableDto>>(values));
 		}
 
 		[HttpPost]
 		public IActionResult CreateMenuTables(CreateMenuTableDto createMenuTableDto )
 		{
-			MenuTable menuTable = new MenuTable()
-			{
-
-				Name = createMenuTableDto.Name,
-				Status = false
-			};
-
-			_menuTableService.TAdd(menuTable);
+			createMenuTableDto.Status = false;
+			var value = _mapper.Map<MenuTable>(createMenuTableDto);
+			//MenuTable menuTable = new MenuTable()
+			//{
+			//	Name = createMenuTableDto.Name,
+			//	Status = false
+			//};
+			_menuTableService.TAdd(value);
 			return Ok("Masa  Basarili Bir Sekilde Eklendi");
 		}
 
@@ -56,14 +59,15 @@ namespace SignalRApi.Controllers
 		[HttpPut] //Guncelleme islemi icin 
 		public IActionResult UpdateMenuTable(UpdateMenuTableDto updateMenuTableDto)
 		{
-			MenuTable menuTable = new MenuTable()
-			{
-				 MenuTableId = updateMenuTableDto.MenuTableId,
-				 Name = updateMenuTableDto.Name,
-				 Status = updateMenuTableDto.Status
-			};
+			var value = _mapper.Map<MenuTable>(updateMenuTableDto);
+			//MenuTable menuTable = new MenuTable()
+			//{
+			//	 MenuTableId = updateMenuTableDto.MenuTableId,
+			//	 Name = updateMenuTableDto.Name,
+			//	 Status = updateMenuTableDto.Status
+			//};
 
-			_menuTableService.TUpdate(menuTable);
+			_menuTableService.TUpdate(value);
 			return Ok("Masa Bilgisi Guncellendi");
 		}
 
@@ -72,7 +76,7 @@ namespace SignalRApi.Controllers
 		public IActionResult GetMenuTable(int id)
 		{
 			var value = _menuTableService.TGetById(id);
-			return Ok(value);
+			return Ok(_mapper.Map<GetMenuTableDto>(value));
 		}
 	}
 }
