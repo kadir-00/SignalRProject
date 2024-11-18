@@ -147,5 +147,12 @@ namespace SignalRApi.Controllers
             return Ok("Urun Bilgisi Guncellendi");
 
         }
+        [HttpGet("GetLast9Products")]
+        public IActionResult GetLast9Products()
+        {
+            var value = _productService.TGetLast9Products();
+            return Ok(value);
+        }
+
     }
 }

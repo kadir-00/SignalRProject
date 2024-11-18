@@ -18,7 +18,7 @@ namespace SignalRUI.ViewComponents.DefaultCommponents
         public async Task<IViewComponentResult> InvokeAsync()
         {
             var client = _httpClientFactory.CreateClient();
-            var responseMessage = await client.GetAsync("https://localhost:7190/api/Product");
+            var responseMessage = await client.GetAsync("https://localhost:7190/api/Product/GetLast9Products");
 
             // json'dan gelen icerigi string formatinda oku 
             var jsonData = await responseMessage.Content.ReadAsStringAsync();

@@ -19,6 +19,7 @@ namespace SignalR.BussinesLayer.Abstract
 		string TProductNameByMaxPrice();
 		string TProductNameByMinPrice();
 		decimal TProductAvgPriceByHamburger();
+		List<Product> TGetLast9Products();
 
 
 	}

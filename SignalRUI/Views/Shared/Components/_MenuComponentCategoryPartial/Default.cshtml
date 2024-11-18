@@ -1,0 +1,14 @@
+﻿@model List<ResultCategoryDto>
+<ul class="filters_menu">
+    <li class="active" data-filter="*">Tum Urunler</li>
+    @foreach (var item in Model)
+    {
+        <li data-filter=".@item.CategoryName">@item.CategoryName</li>
+    }
+   @*  <li data-filter=".Hamburger">Burger</li>
+    <li data-filter=".Pizza">Pizza</li>
+    <li data-filter=".Salata">Salata</li>
+    <li data-filter=".Makarna">Makarna</li>
+    <li data-filter=".Tatli">Tatli</li>
+    <li data-filter=".Icecek">Icecek</li> *@
+</ul>
