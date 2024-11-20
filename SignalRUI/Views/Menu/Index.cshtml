@@ -53,7 +53,10 @@
                                         <h6>
                                             @item.Price TL
                                         </h6>
-                                        <a href="#" onclick="showproductid(@item.ProductID)" id="@item.ProductID" >
+                                            <a href="#" onclick="showproductid(@item.ProductID, @ViewBag.v)">
+
+
+
                                             <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 456.029 456.029" style="enable-background:new 0 0 456.029 456.029;" xml:space="preserve">
                                             <g>
                                             <g>
@@ -118,7 +121,7 @@
             </div>
             <div class="btn-box">
                 <a href="/Baskets/Index/">
-                    Sepete Git!
+                    Sepete Git! (@ViewBag.v)
                 </a>
             </div>
         </div>
@@ -133,18 +136,51 @@
     <!-- End Google Map -->
 
     <script>
-        function showproductid(value) {
-            var id = value;
+       
+        function showproductid(productId, menuTableId) {
             $.ajax({
                 type: 'POST',
-                data: { item: id },
-                url: "/Menu/AddBasket/" + id,
-                contentType: 'json',
+                url: "/Menu/AddBasket",
+                data: {
+                    id: productId,
+                    menuTableId: menuTableId // MenuTableId burada gönderiliyor
+                },
                 success: function () {
-                    alert("Sectiginiz Urun Sepete Eklendi", "Tikladiginiz Urun Id Degeri: " + id,);
-                    // swal('Good job!' + id, 'You clicked the button!', 'success');
+                    alert("Seçilen Ürün ID:" + productId, "Seçtiğiniz Ürün Sepete Eklendi!", "success");
+                },
+                error: function (xhr, status, error) {
+                    console.error("Hata:", error);
+                    console.log("Yanıt:", xhr.responseText);
                 }
             });
+        };
+    </script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+       @*  // function showproductid(productId,menuTableId) {
+        //     var id = value;
+        //     $.ajax({
+        //         type: 'POST',
+        //         url: "/Menu/AddBasket/" + id,
+        //         data: 
+        //         {
+        //             id:productId,
+        //             MenuTableId:menuTableId
+                    
+        //         },
+        //        success:function () {
+        //            swal("Secilen Urun ID:" + productId, "Sectiginiz Urun Sepete Eklendi!", "succes");
+        //        },
+        //         error: function (xhr, status, error) {
+        //             console.error("HATA:", error);
+        //             console.log("Yanit: ", xhr.responseText);
+        //         }
+        //         // contentType: 'json',
+        //         // success: function () {
+        //         //     alert("Sectiginiz Urun Sepete Eklendi", "Tikladiginiz Urun Id Degeri: " + id,);
+        //             // swal('Good job!' + id, 'You clicked the button!', 'success');
+        //         // }
+        //     });
+        // };
 
         // function showproductid(value) {
         //     var id = value;
@@ -157,9 +193,9 @@
         //             // alert('Good job!' + id, 'You clicked the button!', 'success');
         //         }
         //     });
-        }
-    </script>
-    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+        } *@
+   
+   
 
 </body>
 

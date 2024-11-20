@@ -24,6 +24,7 @@ namespace SignalRUI.Controllers
         public async Task<IActionResult> Index(CreateBookingDto createBookingDto)
         {
             createBookingDto.PersonCount = 2;
+            createBookingDto.Description = "b";
             var client = _httpClientFactory.CreateClient();
             var jsonData = JsonConvert.SerializeObject(createBookingDto);
             StringContent stringContent = new StringContent(jsonData, System.Text.Encoding.UTF8, "application/json");
@@ -32,7 +33,13 @@ namespace SignalRUI.Controllers
             {
                 return RedirectToAction("Index","Default");
             }
-            return View();
+            else
+            {
+                var errorContent=await responseMessage.Content.ReadAsStringAsync();
+                ModelState.AddModelError(string.Empty, errorContent);
+				return View();
+			}
+           
 
         }
     }

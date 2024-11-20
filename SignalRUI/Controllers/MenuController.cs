@@ -16,8 +16,13 @@ namespace SignalRUI.Controllers
         }
 
 
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(int id )
         {
+			//id = int.Parse(TempData["customerSelectedTable"].ToString());
+			int y;
+			ViewBag.v = id;
+			//TempData["x"] = id;
+
             var client = _httpClientFactory.CreateClient();
             var responseMessage = await client.GetAsync("https://localhost:7190/api/Product/ProductListWithCategory");
 
@@ -45,11 +50,21 @@ namespace SignalRUI.Controllers
 		//}
 
 		[HttpPost]
-		public async Task<IActionResult> AddBasket(int id)
+		public async Task<IActionResult> AddBasket(int id,int menuTableId)
 		{
-			CreateBasketDto createBasketDto = new CreateBasketDto();
-			createBasketDto.ProductID = id;
-
+			if (menuTableId == 0) 
+			{
+				return BadRequest("MenuTableId 0 Geliyor");
+			}
+			CreateBasketDto createBasketDto = new CreateBasketDto() 
+			{ 
+			ProductID = id,
+			MenuTableId = menuTableId
+			
+			};
+			//createBasketDto.ProductID = id;
+			//createBasketDto.MenuTableId = int.Parse( TempData["x"].ToString());
+			// masa numarasi atanmali 
 			var client = _httpClientFactory.CreateClient();
 			var jsonData = JsonConvert.SerializeObject(createBasketDto);
 			StringContent stringContent = new StringContent(jsonData, Encoding.UTF8, "application/json");

@@ -49,10 +49,11 @@ namespace SignalRApi.Controllers
             _basketService.TAdd(new SignalR.EntityLayer.Entities.Basket() 
             {
 				ProductID = createBasketDto.ProductID,
+                MenuTableId = createBasketDto.MenuTableId,
 				Count = 1,
-                MenuTableId = 3,  /* bak*/
-                Price =context.Products.Where(x=>x.ProductID==createBasketDto.ProductID).Select(y=>y.Price).FirstOrDefault(),
-            TotalPrice=0,
+                //MenuTableId = 3,  /* bak*/
+                Price = context.Products.Where(x=>x.ProductID==createBasketDto.ProductID).Select(y=>y.Price).FirstOrDefault(),
+            TotalPrice=createBasketDto.TotalPrice,
             }); 
             return Ok();
         }

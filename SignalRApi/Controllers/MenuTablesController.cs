@@ -30,6 +30,8 @@ namespace SignalRApi.Controllers
 		[HttpGet]
 		public IActionResult MenuTablesList()
 		{
+
+
 			var values = _menuTableService.TGetListAll();
 			return Ok(_mapper.Map<List<ResultMenuTableDto>>(values));
 		}
