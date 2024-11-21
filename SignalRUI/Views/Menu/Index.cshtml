@@ -120,8 +120,8 @@
                 </div>
             </div>
             <div class="btn-box">
-                <a href="/Baskets/Index/">
-                    Sepete Git! (@ViewBag.v)
+                <a href="/CustomerTable/CustomerTableList/">
+                    Siparis Ver! (@ViewBag.v)
                 </a>
             </div>
         </div>
@@ -146,7 +146,7 @@
                     menuTableId: menuTableId // MenuTableId burada gönderiliyor
                 },
                 success: function () {
-                    alert("Seçilen Ürün ID:" + productId, "Seçtiğiniz Ürün Sepete Eklendi!", "success");
+                    swal("Seçilen Ürün ID:" + productId, "Seçtiğiniz Ürün Sepete Eklendi!", "success");
                 },
                 error: function (xhr, status, error) {
                     console.error("Hata:", error);

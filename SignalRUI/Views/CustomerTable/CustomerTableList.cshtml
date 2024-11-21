@@ -72,11 +72,11 @@
 	<div class="container-fluid">
 		<div class="row px-xl-5">
 			<div class="col-12">
-				<nav class="breadcrumb bg-dark mb-30">
-					<a class="breadcrumb-item text-white" href="/Default/Index">Ana Sayfa</a>
-					<a class="breadcrumb-item text-white" href="/Menu/Index">API Listesi</a>
-					<span class="breadcrumb-item active">Tasty API</span>
-				</nav>
+                <nav class="breadcrumb bg-dark mb-30">
+                   @*  <a class="breadcrumb-item text-white" href="/Default/Index">Ana Sayfa</a>
+                    <a class="breadcrumb-item text-white" href="/Menu/Index">API Listesi</a> *@
+                    <span class="breadcrumb-item active">Lutfen Masanizi Seciniz!</span>
+                </nav>
 			</div>
 		</div>
 	</div>
@@ -101,14 +101,19 @@
                     @if (item.Status==false)
                         {
                             <div class="widget-icon">
-                                  <i class="fas fa-chair"></i> <!-- Masa ikonu -->
+                                <a href="/Baskets/Index/@item.MenuTableId">   <i class="fa-solid fa-cash-register"></i> </a>
+                                @*   <i class="fas fa-chair"></i> *@ <!-- Masa ikonu -->
                             </div>
+
+                          
                         }
                         else
                         {
                             <div class="widget-icon">
                                 <a href="/Menu/Index/@item.MenuTableId">   <i class="fas fa-chair"></i> </a><!-- Masa ikonu -->
                             </div>
+
+                           
                         }
                   
                     <div class="widget-text">

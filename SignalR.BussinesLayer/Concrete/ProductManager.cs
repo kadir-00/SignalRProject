@@ -87,5 +87,10 @@ namespace SignalR.BussinesLayer.Concrete
 		{
 			return _productDal.GetLast9Products();
 		}
+
+		public decimal TProductPriceBySteakBurger()
+		{
+			return _productDal.ProductPriceBySteakBurger();
+		}
 	}
 }

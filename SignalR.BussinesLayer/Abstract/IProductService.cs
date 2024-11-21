@@ -20,6 +20,7 @@ namespace SignalR.BussinesLayer.Abstract
 		string TProductNameByMinPrice();
 		decimal TProductAvgPriceByHamburger();
 		List<Product> TGetLast9Products();
+		public decimal TProductPriceBySteakBurger();
 
 
 	}

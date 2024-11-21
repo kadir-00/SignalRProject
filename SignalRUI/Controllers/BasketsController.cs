@@ -14,10 +14,11 @@ namespace SignalRUI.Controllers
             _httpClientFactory = httpClientFactory;
         }
 
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(int id)
         {
+            TempData["id"]=id;
             var client = _httpClientFactory.CreateClient();
-            var responseMessage = await client.GetAsync("https://localhost:7190/api/Basket/BasketListByMenuTableWithProductName?id=3");
+            var responseMessage = await client.GetAsync("https://localhost:7190/api/Basket/BasketListByMenuTableWithProductName?id= "+id);
             if (responseMessage.IsSuccessStatusCode) // eger responseMessage 200 donerse 
             {
                 // json'dan gelen icerigi string formatinda oku 
@@ -34,6 +35,7 @@ namespace SignalRUI.Controllers
 
         public async Task<IActionResult> DeleteBasket(int id)
         {
+            id =int.Parse( TempData["id"].ToString());
 			var client = _httpClientFactory.CreateClient();
 			var responseMessage = await client.DeleteAsync($"https://localhost:7190/api/Basket/{id}");
 			if (responseMessage.IsSuccessStatusCode)

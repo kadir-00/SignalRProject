@@ -5,6 +5,7 @@
 	decimal baskeTotalPrice=0;
 	decimal baskeTotalPriceWithTax=0;
 	decimal tax = 0;
+	decimal totalprice = 0;
 }
 
 <!DOCTYPE html>
@@ -46,13 +47,14 @@
 						tax = baskeTotalPrice / 100 * 10;
 						baskeTotalPriceWithTax =  (baskeTotalPrice + tax);
 						count++;
+						totalprice = item.Count * item.Price;
 						<tbody class="align-middle">
 							<tr>
 								<td class="align-middle">@count</td>
 								<td class="align-middle">@item.ProductName</td>
 								<td class="align-middle">@item.Count</td>
 								<td class="align-middle">@item.Price</td>
-								<td class="align-middle">@item.TotalPrice</td>
+								<td class="align-middle">@totalprice.ToString("0.00")</td>
 								<td class="align-middle btn-delete">
 									<a 
 										 class="btn btn-sm btn-danger" href="/Baskets/DeleteBasket/@item.BasketId">
